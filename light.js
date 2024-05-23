@@ -23,8 +23,8 @@ document.addEventListener('mousemove', function (e) {
     const trail = document.createElement('div');
     trail.className = 'trail';
     document.body.appendChild(trail);
-    trail.style.left = `${e.clientX - 10}px`;
-    trail.style.top = `${e.clientY - 10}px`;
+    trail.style.left = `${e.clientX - 20}px`;
+    trail.style.top = `${e.clientY - 20}px`;
 
     setTimeout(() => {
         trail.style.opacity = '0';

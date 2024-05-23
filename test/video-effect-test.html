@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #gifContainer {
+            width: 640px;
+            height: 360px;
+            background: url('path_to_static_image.jpg') center center no-repeat;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        #videoContainer {
+            position: relative;
+            width: 640px;
+            height: 360px;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="gifContainer"></div>
+    <div id="videoContainer">
+        <video id="myVideo" loop>
+            <source src="path_to_your_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const container = document.getElementById('gifContainer');
+        let url = container.getAttribute('data-url');
+        let isGifLoaded = false;
+
+        // 초기 이미지로 PNG 설정
+        container.style.backgroundImage = 'url("' + url + '.png")';
+
+        container.addEventListener('mouseenter', function () {
+            if (!isGifLoaded) {
+                container.style.backgroundImage = 'url("' + url + '.gif")';
+                isGifLoaded = true;
+            }
+        });
+
+        container.addEventListener('mouseleave', function () {
+            container.style.backgroundImage = 'url("' + url + '.png")';
+            isGifLoaded = false;
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const video = document.getElementById('myVideo');
+        const videoContainer = document.getElementById('videoContainer');
+        const threshold = 100; // 마우스가 비디오와 이 거리(픽셀 단위) 이내로 접근하면 재생
+
+        function checkDistance(event) {
+            const bounds = videoContainer.getBoundingClientRect();
+            const centerX = bounds.left + bounds.width / 2;
+            const centerY = bounds.top + bounds.height / 2;
+            const distance = Math.sqrt(
+                Math.pow(centerX - event.clientX, 2) + Math.pow(centerY - event.clientY, 2)
+            );
+
+            if (distance < threshold) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        document.addEventListener('mousemove', checkDistance);
+    });
+</script>
+
+</html>
