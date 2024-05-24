@@ -1,7 +1,14 @@
+@font-face {
+    font-family: 'harryfont';
+    src: url('data/font/harryfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
-    --font: "EB Garamond", serif;
-    --font-title: "Playfair Display", serif;
-    --font-sans-serif: "Manrope", sans-serif;
+    --font: 'harryfont', serif; 
+    --font-title: 'harryfont', serif; 
+    --font-sans-serif: 'harryfont', sans-serif; 
     --black: #1c1f33;
     --black--acc: #222;
     --gray: #eee;
@@ -43,11 +50,11 @@ a {
 }
 
 h1 {
-    font: 50px/1 "Playfair Display SC";
+    font: 50px/1 'harryfont';
     text-align: center;
 
     @media (min-width: 700px) {
-        font: 70px/1 "Playfair Display SC";
+        font: 70px/1 'harryfont';
     }
 }
 
@@ -56,7 +63,7 @@ h1 {
 }
 
 h3 {
-    font: italic 20px var(--font-title);
+    font: italic 20px var(--font-title); 
     margin-bottom: 1rem;
 }
 
